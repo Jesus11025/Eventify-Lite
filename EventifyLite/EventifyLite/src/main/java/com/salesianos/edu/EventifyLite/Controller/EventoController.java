@@ -17,6 +17,9 @@ public class EventoController {
 
     @GetMapping("/{id}/entradas")
     public Page<Entrada> getEntradasByEventoId(Long eventoId) {
+        if(eventoId == null) {
+            throw new IllegalArgumentException("El ID del evento no puede ser nulo");
+        }
         return entradaRepository.findByEventoWithAsistente(eventoId);
     }
 }
