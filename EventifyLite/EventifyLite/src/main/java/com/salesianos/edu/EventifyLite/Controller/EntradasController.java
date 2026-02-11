@@ -25,7 +25,7 @@ public class EntradasController {
     }
 
     @PutMapping("/{id}/cancelar")
-    public boolean cancelarEntrada(Long id) {
+    public boolean cancelarEntrada(@PathVariable Long id) {
         if(entradaService.cancelarEntrada(id)) {
             return true;
         } else {

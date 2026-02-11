@@ -8,6 +8,7 @@ import com.salesianos.edu.EventifyLite.Models.Evento;
 import com.salesianos.edu.EventifyLite.Repository.AsistenteRepository;
 import com.salesianos.edu.EventifyLite.Repository.EntradaRepository;
 import com.salesianos.edu.EventifyLite.Repository.EventoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,9 @@ public class EntradaService {
 
     public EntradaDto crearEntrada(Long eventoId, Long asistenteId) {
         Evento evento = eventoRepository.findById(eventoId)
-                .orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Evento no encontrado"));
         Asistente asistente = asistenteRepository.findById(asistenteId)
-                .orElseThrow(() -> new RuntimeException("Asistente no encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Asistente no encontrado"));
 
         if(evento.getEntradasVendidas() >= evento.getAforoMaximo()) {
             throw new RuntimeException("No hay entradas disponibles para este evento");

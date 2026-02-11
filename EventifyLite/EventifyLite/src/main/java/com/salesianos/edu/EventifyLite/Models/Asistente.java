@@ -21,6 +21,7 @@ public class Asistente {
     private Long id;
 
     private String nombre;
+    @Column(unique = true)
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY)
